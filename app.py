@@ -1,14 +1,12 @@
-from flask import Flask, request, jsonify
-app = Flask(__name__)
-registry_ledger = {}
+import os
+from flask import Flask, send_from_directory, request, jsonify
 
-@app.route('/api/auth/register', methods=['POST'])
-def process_portal_registration():
-    payload = request.get_json() or {}
-    u = payload.get('username', '').strip()
-    p = payload.get('password', '').strip()
-    # Seamless registration validation system logic mappings without relational database lag
-    return jsonify({"status": "created", "username": u, "score": 0}), 201
+# Tell Flask to serve static files from the current main directory
+app = Flask(__name__, static_folder='.', static_url_path='')
+
+@app.route('/')
+def index():
+    return send_from_directory('.', 'index.html')
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 5000)))
