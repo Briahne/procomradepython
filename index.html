@@ -13,7 +13,7 @@
             <h1 class="comic-title">PROCOMRADE PYTHON MATRIX</h1>
         </header>
 
-        <!-- VIEW 1: AUTHENTICATION & SHUJAAZ AVATAR SELECTION -->
+        <!-- VIEW 1: AUTHENTICATION & TIKTOK PARODY AVATAR SELECTION -->
         <section id="auth-view" class="matrix-card">
             <div class="chapter-badge">SYSTEM INITIALIZATION</div>
             <h2 class="section-heading">Create Ledger Account & Select Avatar</h2>
@@ -28,50 +28,50 @@
                     <input type="password" id="password" required placeholder="Keep it safe...">
                 </div>
 
-                <label class="avatar-label">Select Your Shujaaz Vector Blueprint:</label>
+                <label class="avatar-label">Select Your Shujaaz Squad Member:</label>
                 <div class="avatar-grid">
-                    <!-- 5 Male Slots -->
-                    <div class="avatar-slot binary-avatar" data-id="m1" onclick="selectAvatar(this)">
-                        <div class="vector-rig"><div class="layer eyelids"></div><div class="layer pupil"></div><div class="layer mouth"></div></div>
-                        <span>BOY BLUEPRINT 01</span>
+                    <!-- 5 Male Slots (Blue Theme) -->
+                    <div class="avatar-slot slot-boy" data-id="m1" onclick="selectAvatar(this)">
+                        <div class="vector-rig"><img src="m1.png" alt="Boy 1" onerror="this.style.display='none'"></div>
+                        <span>BOY 1</span>
                     </div>
-                    <div class="avatar-slot binary-avatar" data-id="m2" onclick="selectAvatar(this)">
-                        <div class="vector-rig"><div class="layer eyelids"></div><div class="layer pupil"></div><div class="layer mouth"></div></div>
-                        <span>BOY BLUEPRINT 02</span>
+                    <div class="avatar-slot slot-boy" data-id="m2" onclick="selectAvatar(this)">
+                        <div class="vector-rig"><img src="m2.png" alt="Boy 2" onerror="this.style.display='none'"></div>
+                        <span>BOY 2</span>
                     </div>
-                    <div class="avatar-slot binary-avatar" data-id="m3" onclick="selectAvatar(this)">
-                        <div class="vector-rig"><div class="layer eyelids"></div><div class="layer pupil"></div><div class="layer mouth"></div></div>
-                        <span>BOY BLUEPRINT 03</span>
+                    <div class="avatar-slot slot-boy" data-id="m3" onclick="selectAvatar(this)">
+                        <div class="vector-rig"><img src="m3.png" alt="Boy 3" onerror="this.style.display='none'"></div>
+                        <span>BOY 3</span>
                     </div>
-                    <div class="avatar-slot binary-avatar" data-id="m4" onclick="selectAvatar(this)">
-                        <div class="vector-rig"><div class="layer eyelids"></div><div class="layer pupil"></div><div class="layer mouth"></div></div>
-                        <span>BOY BLUEPRINT 04</span>
+                    <div class="avatar-slot slot-boy" data-id="m4" onclick="selectAvatar(this)">
+                        <div class="vector-rig"><img src="m4.png" alt="Boy 4" onerror="this.style.display='none'"></div>
+                        <span>BOY 4</span>
                     </div>
-                    <div class="avatar-slot binary-avatar" data-id="m5" onclick="selectAvatar(this)">
-                        <div class="vector-rig"><div class="layer eyelids"></div><div class="layer pupil"></div><div class="layer mouth"></div></div>
-                        <span>BOY BLUEPRINT 05</span>
+                    <div class="avatar-slot slot-boy" data-id="m5" onclick="selectAvatar(this)">
+                        <div class="vector-rig"><img src="m5.png" alt="Boy 5" onerror="this.style.display='none'"></div>
+                        <span>BOY 5</span>
                     </div>
                     
-                    <!-- 5 Female Slots -->
-                    <div class="avatar-slot binary-avatar" data-id="f1" onclick="selectAvatar(this)">
-                        <div class="vector-rig"><div class="layer eyelids"></div><div class="layer pupil"></div><div class="layer mouth"></div></div>
-                        <span>GIRL BLUEPRINT 01</span>
+                    <!-- 5 Female Slots (Magenta Theme) -->
+                    <div class="avatar-slot slot-girl" data-id="f1" onclick="selectAvatar(this)">
+                        <div class="vector-rig"><img src="f1.png" alt="Girl 1" onerror="this.style.display='none'"></div>
+                        <span>GIRL 1</span>
                     </div>
-                    <div class="avatar-slot binary-avatar" data-id="f2" onclick="selectAvatar(this)">
-                        <div class="vector-rig"><div class="layer eyelids"></div><div class="layer pupil"></div><div class="layer mouth"></div></div>
-                        <span>GIRL BLUEPRINT 02</span>
+                    <div class="avatar-slot slot-girl" data-id="f2" onclick="selectAvatar(this)">
+                        <div class="vector-rig"><img src="f2.png" alt="Girl 2" onerror="this.style.display='none'"></div>
+                        <span>GIRL 2</span>
                     </div>
-                    <div class="avatar-slot binary-avatar" data-id="f3" onclick="selectAvatar(this)">
-                        <div class="vector-rig"><div class="layer eyelids"></div><div class="layer pupil"></div><div class="layer mouth"></div></div>
-                        <span>GIRL BLUEPRINT 03</span>
+                    <div class="avatar-slot slot-girl" data-id="f3" onclick="selectAvatar(this)">
+                        <div class="vector-rig"><img src="f3.png" alt="Girl 3" onerror="this.style.display='none'"></div>
+                        <span>GIRL 3</span>
                     </div>
-                    <div class="avatar-slot binary-avatar" data-id="f4" onclick="selectAvatar(this)">
-                        <div class="vector-rig"><div class="layer eyelids"></div><div class="layer pupil"></div><div class="layer mouth"></div></div>
-                        <span>GIRL BLUEPRINT 04</span>
+                    <div class="avatar-slot slot-girl" data-id="f4" onclick="selectAvatar(this)">
+                        <div class="vector-rig"><img src="f4.png" alt="Girl 4" onerror="this.style.display='none'"></div>
+                        <span>GIRL 4</span>
                     </div>
-                    <div class="avatar-slot binary-avatar" data-id="f5" onclick="selectAvatar(this)">
-                        <div class="vector-rig"><div class="layer eyelids"></div><div class="layer pupil"></div><div class="layer mouth"></div></div>
-                        <span>GIRL BLUEPRINT 05</span>
+                    <div class="avatar-slot slot-girl" data-id="f5" onclick="selectAvatar(this)">
+                        <div class="vector-rig"><img src="f5.png" alt="Girl 5" onerror="this.style.display='none'"></div>
+                        <span>GIRL 5</span>
                     </div>
                 </div>
 
@@ -79,9 +79,9 @@
             </form>
         </section>
 
-        <!-- VIEW 2: GAME TERMINAL HUB (READ & ASSESSMENT TRACKER) -->
+        <!-- VIEW 2: GAME TERMINAL HUB -->
         <section id="game-view" class="matrix-card hidden">
-            <div id="chapter-header-badge" class="chapter-badge">CHAPTER 1: THE CORE MATRIX</div>
+            <div id="chapter-header-badge" class="chapter-badge">STAGE PROGRESSION</div>
             
             <div class="user-status-bar">
                 <div class="current-user-info">
