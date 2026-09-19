@@ -29,6 +29,49 @@ const matrixChapters = [
         questions: [
             { q: "Which conditional component acts as a cascading sequential evaluation statement matching multiple unique check rules?", o: ["else block", "elif statement configuration", "while continuous loop loop", "break system trigger"], c: 1, f: "Spot on! elif executes cleanly sequentially if previous check parameters return False." }
         ]
+    },
+    {
+        id: 3,
+        title: "Chapter 3: Micro-Functions & Local Scopes",
+        readingText: `
+            <p><strong>The Core Logic:</strong> Functions help you organize messy copy-pasted blocks into clean, reusable shortcuts. When you pass information inside parameters, they only live inside that local function block layout execution lifecycle.</p>
+            <div class="sitcom-example">
+                <h4>🎬 Sitcom Case Ledger: The Secret Whispering Intern</h4>
+                <p>Imagine your intern defines a variable inside a local scope named <code>def vault_code(): password = 'Sheng2013'</code>. If you try to print that password outside the function in your global scope, Python crashes with a NameError! Global code cannot read local parameters—what happens in the local scope, stays in the local scope!</p>
+            </div>
+        `,
+        questions: [
+            { q: "What runtime error occurs if you try to print a local variable from your global main script layer?", o: ["SyntaxError", "TypeError", "NameError (Variable structure unknown globally)", "ZeroDivisionError"], c: 2, f: "Bingo! The global layer has no idea that local variable entry exists!" }
+        ]
+    },
+    {
+        id: 4,
+        title: "Chapter 4: Lists, Index Arrays & Nested Loop Rigs",
+        readingText: `
+            <p><strong>The Core Logic:</strong> A list is a single ordered collection sequence container holding multiple data pieces. When you nest loops inside lists, you scan through multidimensional spaces item by item—crucial for processing coordinates or graphic templates!</p>
+            <div class="sitcom-example">
+                <h4>🎬 Sitcom Case Ledger: The Crew Inventory Roll Call</h4>
+                <p>Let's log your crew assets into a structured Python array sequence container: <code>crew = ['Brahne', 'Mgenge', 'Shujaa']</code>. Indexes always start from zero! So <code>crew[0]</code> fetches 'Brahne' directly. If you call a negative item index like <code>crew[-1]</code>, Python counts backwards from the tail end and drops 'Shujaa' into your console runtime!</p>
+            </div>
+        `,
+        questions: [
+            { q: "Given inventory = ['oil', 'wire', 'lens'], what item does inventory[-2] target directly?", o: ["oil", "wire (Counting one position backwards from tail index bounds)", "lens", "IndexError"], c: 1, f: "Safi! Negative indexes count cleanly from the back right-hand side edge container margins." },
+            { q: "If you run an inner loop statement completely nested inside an outer loop block matrix, how do executions cycle?", o: ["They run concurrently side by side", "The inner loop runs completely from start to finish for EVERY single cycle of the outer loop", "The outer loop overrides and breaks execution", "The script triggers a forced SyntaxError crash node"], c: 1, f: "Perfect execution! Nested loop architectures scan tables and matrices line-by-item systematically!" }
+        ]
+    },
+    {
+        id: 5,
+        title: "Chapter 5: Dictionaries & Structured Matrix Ledger Entities",
+        readingText: `
+            <p><strong>The Core Logic:</strong> Dictionaries differ from index collections because they store elements inside absolute custom Key-Value pairings instead of relying on linear row number sequences. Keys can be customized string layout values or distinct signature parameters.</p>
+            <div class="sitcom-example">
+                <h4>🎬 Sitcom Case Ledger: The Crew Dossier Profile Lookup</h4>
+                <p>If you build a database profile dictionary: <code>comrade = {'alias': 'Brahne', 'role': 'Lead Programmer', 'level': 99}</code>, you do not look up inputs using numbers. Calling <code>comrade['role']</code> instantly extracts 'Lead Programmer' from your profile object layer without running an extensive processing loop grid scan!</p>
+            </div>
+        `,
+        questions: [
+            { q: "Which dictionary tool allows you to safely check for keys and supply a standard safe fallback value if that key property parameter does not exist?", o: ["The index retrieval check method", "The direct bracket mapping call layout", "The get() method configuration block template", "The setdefault() sequence loop routine"], c: 2, f: "Master execution! .get('key', default) guarantees data delivery workflows safely without causing system exceptions!" }
+        ]
     }
 ];
 
@@ -101,113 +144,3 @@ function showGameDashboard() {
     
     // Injected Vector Rig Layout Dynamic Setup
     document.getElementById("active-avatar-rig").innerHTML = `
-        <div class="vector-rig miniature"><div class="layer eyelids"></div><div class="layer pupil"></div><div class="layer mouth"></div></div>
-    `;
-    
-    loadActiveChapterStage();
-}
-
-function handleLogout() {
-    localStorage.removeItem("procomrade_session");
-    activeUser = null;
-    showAuthDashboard();
-}
-
-function loadActiveChapterStage() {
-    if (activeChapterIndex >= matrixChapters.length) {
-        activeChapterIndex = matrixChapters.length - 1;
-    }
-    const activeData = matrixChapters[activeChapterIndex];
-    document.getElementById("chapter-header-badge").innerText = activeData.title;
-    document.getElementById("reading-title").innerText = `${activeData.title} - The Story Mode Dossier`;
-    document.getElementById("reading-body").innerHTML = activeData.readingText;
-    
-    document.getElementById("reading-panel").classList.remove("hidden");
-    document.getElementById("quiz-panel").classList.add("hidden");
-}
-
-function startChapterQuiz() {
-    document.getElementById("reading-panel").classList.add("hidden");
-    document.getElementById("quiz-panel").classList.remove("hidden");
-    currentQuestionIndex = 0;
-    chapterScore = 0;
-    renderQuestionInConsole();
-}
-
-function renderQuestionInConsole() {
-    const feedbackBox = document.getElementById("feedback-box");
-    const nextBtn = document.getElementById("next-btn");
-    const optionsContainer = document.getElementById("options-container");
-    
-    feedbackBox.classList.add("hidden");
-    nextBtn.classList.add("hidden");
-    optionsContainer.innerHTML = "";
-
-    const activeQuestions = matrixChapters[activeChapterIndex].questions;
-    const activeQ = activeQuestions[currentQuestionIndex];
-
-    document.getElementById("question-text").innerText = activeQ.q;
-
-    activeQ.o.forEach((opt, idx) => {
-        const btn = document.createElement("button");
-        btn.innerText = opt;
-        btn.classList.add("option-btn");
-        btn.onclick = () => processAnswerSelection(idx, btn);
-        optionsContainer.appendChild(btn);
-    });
-}
-
-function processAnswerSelection(selectedIdx, clickedBtn) {
-    const activeQuestions = matrixChapters[activeChapterIndex].questions;
-    const activeQ = activeQuestions[currentQuestionIndex];
-    const feedbackBox = document.getElementById("feedback-box");
-    const nextBtn = document.getElementById("next-btn");
-
-    document.querySelectorAll(".option-btn").forEach(b => b.disabled = true);
-
-    if (selectedIdx === activeQ.c) {
-        chapterScore++;
-        feedbackBox.innerHTML = `<strong>CORRECT LEDGER ENTRY!</strong> ${activeQ.f}`;
-        feedbackBox.className = "feedback success-box";
-    } else {
-        feedbackBox.innerHTML = `<strong>MATRIX ALARM INTRUSION!</strong> ${activeQ.f}`;
-        feedbackBox.className = "feedback error-box";
-    }
-
-    feedbackBox.classList.remove("hidden");
-    nextBtn.classList.remove("hidden");
-
-    nextBtn.onclick = () => {
-        currentQuestionIndex++;
-        if (currentQuestionIndex < activeQuestions.length) {
-            renderQuestionInConsole();
-        } else {
-            concludeChapterAssessment();
-        }
-    };
-}
-
-// Sync Cleared Milestones straight into cloud server ledger endpoints
-async function concludeChapterAssessment() {
-    const activeQuestions = matrixChapters[activeChapterIndex].questions;
-    const targetPercent = (chapterScore / activeQuestions.length) * 100;
-    const optionsContainer = document.getElementById("options-container");
-    const nextBtn = document.getElementById("next-btn");
-    nextBtn.classList.add("hidden");
-
-    if (targetPercent >= 70) {
-        document.getElementById("question-text").innerText = "🎉 CHAPTER UNLOCKED & CLEARED! 🎉";
-        optionsContainer.innerHTML = `
-            <div class="report-card">
-                <h3>Final Score Precision: ${chapterScore} / ${activeQuestions.length} (${targetPercent.toFixed(0)}%)</h3>
-                <p>Status: Unlocked access terminal threshold criteria met!</p>
-                <button id="server-advance-btn" class="comic-btn">SYNC PROGRESSION DATA</button>
-            </div>
-        `;
-
-        document.getElementById("server-advance-btn").onclick = async () => {
-            const nextCh = activeChapterIndex + 2; // Database reads chapters starting from 1
-            try {
-                await fetch('/api/matrix/save_progress', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
