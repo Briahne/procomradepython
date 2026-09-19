@@ -3,32 +3,110 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ProComrade Python Portal</title>
+    <title>ProComrade Python Portal Matrix</title>
     <link rel="stylesheet" href="style.css">
-    <!-- Google Fonts for Comic Book Style -->
     <link href="https://googleapis.com" rel="stylesheet">
 </head>
 <body>
     <div class="portal-container">
         <header>
             <h1 class="comic-title">PROCOMRADE PYTHON MATRIX</h1>
-            <p class="subtitle">Welcome back, Comrade! Resuming your coding portal ledger...</p>
         </header>
 
-        <main class="matrix-card">
-            <div class="chapter-badge">CHAPTER 1: THE CORE MATRIX</div>
-            <div id="quiz-box">
-                <p id="question-text" class="comic-text">Loading neural challenge...</p>
-                <div id="options-container" class="options-grid">
-                    <!-- JavaScript will inject answer choices here -->
+        <!-- VIEW 1: AUTHENTICATION & SHUJAAZ AVATAR SELECTION -->
+        <section id="auth-view" class="matrix-card">
+            <div class="chapter-badge">SYSTEM INITIALIZATION</div>
+            <h2 class="section-heading">Create Ledger Account & Select Avatar</h2>
+            
+            <form id="register-form" onsubmit="event.preventDefault(); handleRegistration();">
+                <div class="form-group">
+                    <label for="username">Comrade Username:</label>
+                    <input type="text" id="username" required autocomplete="off" placeholder="Enter codename...">
                 </div>
-            </div>
-            <div id="feedback-box" class="feedback hidden"></div>
-        </main>
+                <div class="form-group">
+                    <label for="password">Security Password:</label>
+                    <input type="password" id="password" required placeholder="Keep it safe...">
+                </div>
 
-        <footer>
-            <button id="next-btn" class="comic-btn hidden">NEXT CHALLENGE</button>
-        </footer>
+                <label class="avatar-label">Select Your Shujaaz Vector Blueprint:</label>
+                <div class="avatar-grid">
+                    <!-- 5 Male Slots -->
+                    <div class="avatar-slot binary-avatar" data-id="m1" onclick="selectAvatar(this)">
+                        <div class="vector-rig"><div class="layer eyelids"></div><div class="layer pupil"></div><div class="layer mouth"></div></div>
+                        <span>BOY BLUEPRINT 01</span>
+                    </div>
+                    <div class="avatar-slot binary-avatar" data-id="m2" onclick="selectAvatar(this)">
+                        <div class="vector-rig"><div class="layer eyelids"></div><div class="layer pupil"></div><div class="layer mouth"></div></div>
+                        <span>BOY BLUEPRINT 02</span>
+                    </div>
+                    <div class="avatar-slot binary-avatar" data-id="m3" onclick="selectAvatar(this)">
+                        <div class="vector-rig"><div class="layer eyelids"></div><div class="layer pupil"></div><div class="layer mouth"></div></div>
+                        <span>BOY BLUEPRINT 03</span>
+                    </div>
+                    <div class="avatar-slot binary-avatar" data-id="m4" onclick="selectAvatar(this)">
+                        <div class="vector-rig"><div class="layer eyelids"></div><div class="layer pupil"></div><div class="layer mouth"></div></div>
+                        <span>BOY BLUEPRINT 04</span>
+                    </div>
+                    <div class="avatar-slot binary-avatar" data-id="m5" onclick="selectAvatar(this)">
+                        <div class="vector-rig"><div class="layer eyelids"></div><div class="layer pupil"></div><div class="layer mouth"></div></div>
+                        <span>BOY BLUEPRINT 05</span>
+                    </div>
+                    
+                    <!-- 5 Female Slots -->
+                    <div class="avatar-slot binary-avatar" data-id="f1" onclick="selectAvatar(this)">
+                        <div class="vector-rig"><div class="layer eyelids"></div><div class="layer pupil"></div><div class="layer mouth"></div></div>
+                        <span>GIRL BLUEPRINT 01</span>
+                    </div>
+                    <div class="avatar-slot binary-avatar" data-id="f2" onclick="selectAvatar(this)">
+                        <div class="vector-rig"><div class="layer eyelids"></div><div class="layer pupil"></div><div class="layer mouth"></div></div>
+                        <span>GIRL BLUEPRINT 02</span>
+                    </div>
+                    <div class="avatar-slot binary-avatar" data-id="f3" onclick="selectAvatar(this)">
+                        <div class="vector-rig"><div class="layer eyelids"></div><div class="layer pupil"></div><div class="layer mouth"></div></div>
+                        <span>GIRL BLUEPRINT 03</span>
+                    </div>
+                    <div class="avatar-slot binary-avatar" data-id="f4" onclick="selectAvatar(this)">
+                        <div class="vector-rig"><div class="layer eyelids"></div><div class="layer pupil"></div><div class="layer mouth"></div></div>
+                        <span>GIRL BLUEPRINT 04</span>
+                    </div>
+                    <div class="avatar-slot binary-avatar" data-id="f5" onclick="selectAvatar(this)">
+                        <div class="vector-rig"><div class="layer eyelids"></div><div class="layer pupil"></div><div class="layer mouth"></div></div>
+                        <span>GIRL BLUEPRINT 05</span>
+                    </div>
+                </div>
+
+                <button type="submit" class="comic-btn action-wide">INITIALIZE PORTAL LOG</button>
+            </form>
+        </section>
+
+        <!-- VIEW 2: GAME TERMINAL HUB (READ & ASSESSMENT TRACKER) -->
+        <section id="game-view" class="matrix-card hidden">
+            <div id="chapter-header-badge" class="chapter-badge">CHAPTER 1: THE CORE MATRIX</div>
+            
+            <div class="user-status-bar">
+                <div class="current-user-info">
+                    <div id="active-avatar-rig" class="mini-rig"></div>
+                    <span id="user-display">Comrade: Anonymous</span>
+                </div>
+                <button onclick="handleLogout()" class="logout-btn">SECURE LOCKOUT</button>
+            </div>
+
+            <!-- Reading Panel Mode -->
+            <div id="reading-panel" class="content-panel">
+                <h2 id="reading-title" class="panel-title">Reading Material</h2>
+                <div id="reading-body" class="comic-reading-text"></div>
+                <button onclick="startChapterQuiz()" class="comic-btn">LAUNCH VERIFICATION CHECKPOINT</button>
+            </div>
+
+            <!-- Quiz Panel Mode -->
+            <div id="quiz-panel" class="content-panel hidden">
+                <h2 class="panel-title">Verification Matrix</h2>
+                <p id="question-text" class="comic-text">Processing...</p>
+                <div id="options-container" class="options-grid"></div>
+                <div id="feedback-box" class="feedback hidden"></div>
+                <button id="next-btn" class="comic-btn hidden">NEXT INQUIRY</button>
+            </div>
+        </section>
     </div>
     <script src="script.js"></script>
 </body>
