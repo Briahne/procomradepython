@@ -51,7 +51,7 @@ const matrixChapters = [
             <p><strong>The Core Logic:</strong> A list is a single ordered collection sequence container holding multiple data pieces. When you nest loops inside lists, you scan through multidimensional spaces item by item—crucial for processing coordinates or graphic templates!</p>
             <div class="sitcom-example">
                 <h4>🎬 Sitcom Case Ledger: The Crew Inventory Roll Call</h4>
-                <p>Let's log your crew assets into a structured Python array sequence container: <code>crew = ['Brahne', 'Mgenge', 'Shujaa']</code>. Indexes always start from zero! So <code>crew[0]</code> fetches 'Brahne' directly. If you call a negative item index like <code>crew[-1]</code>, Python counts backwards from the tail end and drops 'Shujaa' into your console runtime!</p>
+                <p>Let's log your crew assets into a structured Python array sequence container: <code>crew = ['Brahne', 'Mgenge', 'Shujaa']</code>. Indexes always start from zero! So <code>crew</code> fetches 'Brahne' directly. If you call a negative item index like <code>crew[-1]</code>, Python counts backwards from the tail end and drops 'Shujaa' into your console runtime!</p>
             </div>
         `,
         questions: [
