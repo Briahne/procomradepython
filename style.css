@@ -1,22 +1,130 @@
-@import url('https://fonts.googleapis.com/css2?family=Bangers&family=Russo+One&display=swap');
-
-body { 
-    margin: 0; 
-    background-color: #ffd166; 
-    background-image: radial-gradient(#e5b33c 15%, transparent 16%); 
-    background-size: 18px 18px; 
-    color: #050505; 
+/* Retro 2013 Comic Book/Shujaaz Style Core Matrix Layout */
+body {
+    background-color: #f7ca44;
+    background-image: radial-gradient(#d4a31c 15%, transparent 16%);
+    background-size: 16px 16px;
+    font-family: 'Russo One', sans-serif;
+    color: #1a1a1a;
+    padding: 20px;
+    margin: 0;
 }
 
-.comic-box { 
-    background: #ffffff; 
-    border: 4px solid #000000; 
-    box-shadow: 10px 10px 0px #000000; 
-    padding: 26px; 
+.portal-container {
+    max-width: 700px;
+    margin: 40px auto;
+    padding: 20px;
 }
 
-.comic-title { 
-    font-family: 'Bangers', cursive; 
-    font-size: 3.8rem; 
-    text-shadow: 3px 3px 0px #ef476f, 6px 6px 0px #000; 
+.comic-title {
+    font-family: 'Bangers', cursive;
+    font-size: 4.5rem;
+    color: #e63946;
+    text-shadow: 4px 4px 0px #000;
+    -webkit-text-stroke: 2px #000;
+    letter-spacing: 2px;
+    text-align: center;
+    transform: rotate(-2deg);
+    margin-bottom: 5px;
 }
+
+.subtitle {
+    text-align: center;
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+    color: #222;
+    font-weight: bold;
+}
+
+.matrix-card {
+    background: #fff;
+    border: 5px solid #000;
+    box-shadow: 8px 8px 0px #000;
+    padding: 30px;
+    position: relative;
+    border-radius: 4px;
+}
+
+.chapter-badge {
+    position: absolute;
+    top: -20px;
+    left: 20px;
+    background: #000;
+    color: #fff;
+    padding: 5px 15px;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    transform: rotate(1deg);
+}
+
+.comic-text {
+    font-size: 1.4rem;
+    line-height: 1.6rem;
+    margin-bottom: 25px;
+    border-bottom: 2px dashed #ccc;
+    padding-bottom: 15px;
+}
+
+.options-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 15px;
+}
+
+.option-btn {
+    background: #fdfdfd;
+    border: 3px solid #000;
+    padding: 15px;
+    font-size: 1.1rem;
+    font-family: 'Russo One', sans-serif;
+    text-align: left;
+    cursor: pointer;
+    box-shadow: 4px 4px 0px #000;
+    transition: all 0.1s ease;
+}
+
+.option-btn:hover:not(:disabled) {
+    background: #a8dadc;
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0px #000;
+}
+
+.option-btn:disabled {
+    cursor: not-allowed;
+    opacity: 0.8;
+}
+
+.feedback {
+    margin-top: 25px;
+    padding: 15px;
+    border: 3px solid #000;
+    font-size: 1.1rem;
+    box-shadow: 4px 4px 0px #000;
+}
+
+.success-box { background: #52b788; }
+.error-box { background: #e63946; color: #fff; }
+
+.comic-btn {
+    background: #e63946;
+    color: #fff;
+    border: 4px solid #000;
+    padding: 12px 25px;
+    font-size: 1.3rem;
+    font-family: 'Bangers', cursive;
+    letter-spacing: 1px;
+    cursor: pointer;
+    box-shadow: 4px 4px 0px #000;
+    display: block;
+    margin: 25px auto 0 auto;
+}
+
+.comic-btn:hover {
+    background: #1d3557;
+}
+
+.report-card {
+    text-align: center;
+    padding: 20px;
+}
+
+.hidden { display: none !important; }
