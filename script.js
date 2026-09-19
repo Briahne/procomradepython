@@ -43,6 +43,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const cachedUser = localStorage.getItem("procomrade_session");
     if (cachedUser) {
         activeUser = JSON.parse(cachedUser);
+        activeChapterIndex = (activeUser.currentChapter || 1) - 1;
         showGameDashboard();
     } else {
         showAuthDashboard();
@@ -55,7 +56,8 @@ function selectAvatar(element) {
     chosenAvatarId = element.getAttribute('data-id');
 }
 
-function handleRegistration() {
+// Fixed Dynamic API Call to Python Backend
+async function handleRegistration() {
     const userIn = document.getElementById("username").value.trim();
     const passIn = document.getElementById("password").value;
 
@@ -64,9 +66,27 @@ function handleRegistration() {
         return;
     }
 
-    activeUser = { username: userIn, avatar: chosenAvatarId, currentChapter: 1 };
-    localStorage.setItem("procomrade_session", JSON.stringify(activeUser));
-    showGameDashboard();
+    try {
+        const response = await fetch('/api/matrix/register', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ username: userIn, password: passIn, avatar: chosenAvatarId })
+        });
+
+        const result = await response.json();
+
+        if (response.ok && result.success) {
+            activeUser = result.user;
+            localStorage.setItem("procomrade_session", JSON.stringify(activeUser));
+            activeChapterIndex = (activeUser.currentChapter || 1) - 1;
+            showGameDashboard();
+        } else {
+            alert(result.msg || "🚨 Connection to matrix server failed!");
+        }
+    } catch (err) {
+        console.error(err);
+        alert("🚨 Network timeout: Backend server took too long to compile logs!");
+    }
 }
 
 function showAuthDashboard() {
@@ -94,6 +114,9 @@ function handleLogout() {
 }
 
 function loadActiveChapterStage() {
+    if (activeChapterIndex >= matrixChapters.length) {
+        activeChapterIndex = matrixChapters.length - 1;
+    }
     const activeData = matrixChapters[activeChapterIndex];
     document.getElementById("chapter-header-badge").innerText = activeData.title;
     document.getElementById("reading-title").innerText = `${activeData.title} - The Story Mode Dossier`;
@@ -164,7 +187,8 @@ function processAnswerSelection(selectedIdx, clickedBtn) {
     };
 }
 
-function concludeChapterAssessment() {
+// Sync Cleared Milestones straight into cloud server ledger endpoints
+async function concludeChapterAssessment() {
     const activeQuestions = matrixChapters[activeChapterIndex].questions;
     const targetPercent = (chapterScore / activeQuestions.length) * 100;
     const optionsContainer = document.getElementById("options-container");
@@ -177,27 +201,13 @@ function concludeChapterAssessment() {
             <div class="report-card">
                 <h3>Final Score Precision: ${chapterScore} / ${activeQuestions.length} (${targetPercent.toFixed(0)}%)</h3>
                 <p>Status: Unlocked access terminal threshold criteria met!</p>
-                <button onclick="advanceNextChapterIndex()" class="comic-btn">PROCEED TO NEXT MATRIX ROUTINE</button>
+                <button id="server-advance-btn" class="comic-btn">SYNC PROGRESSION DATA</button>
             </div>
         `;
-    } else {
-        document.getElementById("question-text").innerText = "🚨 CRITICAL CRASH: ACCESS SUSPENDED 🚨";
-        optionsContainer.innerHTML = `
-            <div class="report-card">
-                <h3>Final Score Precision: ${chapterScore} / ${activeQuestions.length} (${targetPercent.toFixed(0)}%)</h3>
-                <p>Status: Under 70% threshold parameter benchmark score requirement. You need to read the dossier again!</p>
-                <button onclick="loadActiveChapterStage()" class="comic-btn">RELOAD READING LOG ARCHIVES</button>
-            </div>
-        `;
-    }
-}
 
-function advanceNextChapterIndex() {
-    if (activeChapterIndex + 1 < matrixChapters.length) {
-        activeChapterIndex++;
-        loadActiveChapterStage();
-    } else {
-        document.getElementById("question-text").innerText = "🏁 SYSTEM TERMINAL MASTERED 🏁";
-        document.getElementById("options-container").innerHTML = "<p>Congratulations Comrade, you have successfully cleared the current progression bounds!</p>";
-    }
-}
+        document.getElementById("server-advance-btn").onclick = async () => {
+            const nextCh = activeChapterIndex + 2; // Database reads chapters starting from 1
+            try {
+                await fetch('/api/matrix/save_progress', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
