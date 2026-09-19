@@ -144,3 +144,6 @@ function showGameDashboard() {
     
     // Injected Vector Rig Layout Dynamic Setup
     document.getElementById("active-avatar-rig").innerHTML = `
+        <div class="vector-rig miniature"><div class="layer eyelids"></div><div class="layer pupil"></div><div class="layer mouth"></div></div>
+    `;
+    
